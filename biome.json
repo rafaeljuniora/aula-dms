@@ -6,11 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "**",
-      "!!**/dist",
-      "!src/shared/infra/database/drizzle"
-    ]
+    "includes": ["**", "!!**/dist", "!src/shared/infra/database/drizzle"]
   },
   "formatter": {
     "enabled": true,

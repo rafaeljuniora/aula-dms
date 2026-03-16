@@ -8,7 +8,7 @@ export class StudentDto {
     public registration: string,
   ) {}
 
-  public static fromStudent(student: Student | null): StudentDto | null {
+  public static from(student: Student | null): StudentDto | null {
     if (!student) return null;
     return new StudentDto(
       student.name,

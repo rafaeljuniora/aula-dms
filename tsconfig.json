@@ -22,8 +22,11 @@
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@infra/*": ["src/shared/infra/*"],
-      "@academic/*": ["src/modules/academic/*"]
+      "@shared/*": ["src/shared/*"],
+      "@academic/*": ["src/modules/academic/*"],
+      "@class-offering/*": ["src/modules/class-offering/*"],
+      "@enrollment/*": ["src/modules/enrollment/*"],
+      "@attendance/*": ["src/modules/attendance/*"]
     }
   }
 }

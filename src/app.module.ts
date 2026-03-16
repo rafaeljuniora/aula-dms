@@ -1,9 +1,19 @@
+import { AcademicModule } from "@academic/academic.module";
+import { AttendanceModule } from "@attendance/attendance.module";
+import { ClassOfferingModule } from "@class-offering/class-offering.module";
+import { EnrollmentModule } from "@enrollment/enrollment.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { StudentsModule } from './modules/academic/students/students.module';
-import { DatabaseModule } from './shared/infra/database/database.module';
+import { SharedModule } from "@shared/shared.module";
 
 @Module({
-  imports: [ConfigModule.forRoot(), StudentsModule, DatabaseModule],
+  imports: [
+    ConfigModule.forRoot(),
+    AcademicModule,
+    ClassOfferingModule,
+    EnrollmentModule,
+    AttendanceModule,
+    SharedModule,
+  ],
 })
 export class AppModule {}
