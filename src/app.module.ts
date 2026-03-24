@@ -1,4 +1,3 @@
-import { AcademicModule } from "@academic/academic.module";
 import { AuthModule } from "@auth/auth.module";
 import { AttendanceModule } from "@attendance/attendance.module";
 import { ClassOfferingModule } from "@class-offering/class-offering.module";
@@ -14,7 +13,6 @@ import { UsersModule } from "@users/users.module";
     SharedModule,
     UsersModule,
     AuthModule,
-    AcademicModule,
     ClassOfferingModule,
     EnrollmentModule,
     AttendanceModule,
