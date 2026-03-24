@@ -1,19 +1,23 @@
 import { AcademicModule } from "@academic/academic.module";
+import { AuthModule } from "@auth/auth.module";
 import { AttendanceModule } from "@attendance/attendance.module";
 import { ClassOfferingModule } from "@class-offering/class-offering.module";
 import { EnrollmentModule } from "@enrollment/enrollment.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SharedModule } from "@shared/shared.module";
+import { UsersModule } from "@users/users.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    SharedModule,
+    UsersModule,
+    AuthModule,
     AcademicModule,
     ClassOfferingModule,
     EnrollmentModule,
     AttendanceModule,
-    SharedModule,
   ],
 })
 export class AppModule {}
