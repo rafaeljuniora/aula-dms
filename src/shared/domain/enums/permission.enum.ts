@@ -1,16 +1,4 @@
 export enum Permission {
-  STUDENTS_READ = "students:read",
-  STUDENTS_WRITE = "students:write",
-  STUDENTS_DELETE = "students:delete",
-
-  TEACHERS_READ = "teachers:read",
-  TEACHERS_WRITE = "teachers:write",
-  TEACHERS_DELETE = "teachers:delete",
-
-  SUBJECTS_READ = "subjects:read",
-  SUBJECTS_WRITE = "subjects:write",
-  SUBJECTS_DELETE = "subjects:delete",
-
   CLASS_OFFERINGS_READ = "class-offerings:read",
   CLASS_OFFERINGS_WRITE = "class-offerings:write",
 

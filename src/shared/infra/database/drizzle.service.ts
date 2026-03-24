@@ -1,6 +1,3 @@
-import { studentsSchema } from "@academic/students/infra/schemas/student.schema";
-import { subjectsSchema } from "@academic/subjects/infra/schemas/subject.schema";
-import { teachersSchema } from "@academic/teachers/infra/schemas/teacher.schema";
 import {
   attendanceStatusEnum,
   attendancesSchema,
@@ -18,9 +15,6 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 const schema = {
-  subjectsSchema,
-  studentsSchema,
-  teachersSchema,
   classOfferingsSchema,
   classOfferingStatusEnum,
   enrollmentsSchema,
