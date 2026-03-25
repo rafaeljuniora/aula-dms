@@ -23,9 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@shared/*": ["src/shared/*"],
-      "@class-offering/*": ["src/modules/class-offering/*"],
       "@enrollment/*": ["src/modules/enrollment/*"],
-"@users/*": ["src/modules/users/*"],
+      "@users/*": ["src/modules/users/*"],
       "@auth/*": ["src/modules/auth/*"]
     }
   }
