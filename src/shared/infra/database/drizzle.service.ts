@@ -1,8 +1,4 @@
 import {
-  classOfferingStatusEnum,
-  classOfferingsSchema,
-} from "@class-offering/infra/schemas/class-offering.schema";
-import {
   enrollmentStatusEnum,
   enrollmentsSchema,
 } from "@enrollment/infra/schemas/enrollment.schema";
@@ -11,8 +7,6 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 const schema = {
-  classOfferingsSchema,
-  classOfferingStatusEnum,
   enrollmentsSchema,
   enrollmentStatusEnum,
 };

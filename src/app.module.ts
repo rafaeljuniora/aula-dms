@@ -1,5 +1,4 @@
 import { AuthModule } from "@auth/auth.module";
-import { ClassOfferingModule } from "@class-offering/class-offering.module";
 import { EnrollmentModule } from "@enrollment/enrollment.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
@@ -12,7 +11,6 @@ import { UsersModule } from "@users/users.module";
     SharedModule,
     UsersModule,
     AuthModule,
-    ClassOfferingModule,
     EnrollmentModule,
   ],
 })
