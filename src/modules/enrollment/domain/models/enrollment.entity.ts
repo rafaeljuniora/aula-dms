@@ -6,7 +6,6 @@ export enum EnrollmentStatus {
 export class Enrollment {
   private readonly _id?: string;
   private _studentId: string;
-  private _classOfferingId: string;
   private _status: EnrollmentStatus;
   private _enrolledAt: Date;
   private _canceledAt?: Date | null;
@@ -27,9 +26,6 @@ export class Enrollment {
     return this._studentId;
   }
 
-  get classOfferingId(): string {
-    return this._classOfferingId;
-  }
 
   get status(): EnrollmentStatus {
     return this._status;
@@ -56,10 +52,6 @@ export class Enrollment {
     return this;
   }
 
-  withClassOfferingId(classOfferingId: string) {
-    this._classOfferingId = classOfferingId;
-    return this;
-  }
 
   withStatus(status: EnrollmentStatus) {
     this._status = status;
@@ -79,7 +71,6 @@ export class Enrollment {
   static restore(props?: {
     id?: string;
     studentId: string;
-    classOfferingId: string;
     status: EnrollmentStatus;
     enrolledAt: Date;
     canceledAt?: Date | null;
@@ -95,7 +86,6 @@ export class Enrollment {
     );
 
     enrollment._studentId = props.studentId;
-    enrollment._classOfferingId = props.classOfferingId;
     enrollment._status = props.status;
     enrollment._enrolledAt = props.enrolledAt;
     enrollment._canceledAt = props.canceledAt ?? null;

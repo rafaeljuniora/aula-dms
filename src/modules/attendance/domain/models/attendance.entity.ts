@@ -7,7 +7,6 @@ export class Attendance {
   private readonly _id?: string;
   private _studentId: string;
   private _lessonId: string;
-  private _classOfferingId: string;
   private _status: AttendanceStatus;
   private readonly _createdAt?: Date;
   private readonly _updatedAt?: Date;
@@ -30,9 +29,6 @@ export class Attendance {
     return this._lessonId;
   }
 
-  get classOfferingId(): string {
-    return this._classOfferingId;
-  }
 
   get status(): AttendanceStatus {
     return this._status;
@@ -56,10 +52,6 @@ export class Attendance {
     return this;
   }
 
-  withClassOfferingId(classOfferingId: string) {
-    this._classOfferingId = classOfferingId;
-    return this;
-  }
 
   withStatus(status: AttendanceStatus) {
     this._status = status;
@@ -70,7 +62,6 @@ export class Attendance {
     id?: string;
     studentId: string;
     lessonId: string;
-    classOfferingId: string;
     status: AttendanceStatus;
     createdAt?: Date;
     updatedAt?: Date;
@@ -85,7 +76,6 @@ export class Attendance {
 
     attendance._studentId = props.studentId;
     attendance._lessonId = props.lessonId;
-    attendance._classOfferingId = props.classOfferingId;
     attendance._status = props.status;
 
     return attendance;

@@ -21,25 +21,9 @@ export class EnrollmentService {
     private readonly enrollmentRepository: EnrollmentRepository,
   ) {}
 
-  async enroll(dto: {
-    studentId: string;
-    classOfferingId: string;
-  }): Promise<void> {
-    const existing =
-      await this.enrollmentRepository.findByStudentAndClassOffering(
-        dto.studentId,
-        dto.classOfferingId,
-      );
-
-    if (existing) {
-      throw new ConflictException(
-        "Student is already enrolled in this class offering",
-      );
-    }
-
+  async enroll(dto: { studentId: string }): Promise<void> {
     const enrollment = Enrollment.restore({
       studentId: dto.studentId,
-      classOfferingId: dto.classOfferingId,
       status: EnrollmentStatus.ACTIVE,
       enrolledAt: new Date(),
     });
@@ -57,9 +41,5 @@ export class EnrollmentService {
     await this.enrollmentRepository.cancel(id);
   }
 
-  async listByClassOffering(classOfferingId: string): Promise<EnrollmentDto[]> {
-    const response =
-      await this.enrollmentRepository.findByClassOfferingId(classOfferingId);
-    return response.map((row) => EnrollmentDto.from(row)!);
-  }
+
 }

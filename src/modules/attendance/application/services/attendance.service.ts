@@ -19,28 +19,10 @@ export class AttendanceService {
   async register(dto: {
     studentId: string;
     lessonId: string;
-    classOfferingId: string;
     status: AttendanceStatus;
   }): Promise<void> {
     const attendance = Attendance.restore(dto);
     await this.attendanceRepository.create(attendance!);
   }
 
-  async findByStudentAndClassOffering(
-    studentId: string,
-    classOfferingId: string,
-  ): Promise<AttendanceDto[]> {
-    const records =
-      await this.attendanceRepository.findByStudentAndClassOffering(
-        studentId,
-        classOfferingId,
-      );
-    return records.map((r) => AttendanceDto.from(r)!);
-  }
-
-  async findByClassOffering(classOfferingId: string): Promise<AttendanceDto[]> {
-    const records =
-      await this.attendanceRepository.findByClassOffering(classOfferingId);
-    return records.map((r) => AttendanceDto.from(r)!);
-  }
 }

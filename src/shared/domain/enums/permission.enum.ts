@@ -1,7 +1,4 @@
 export enum Permission {
-  CLASS_OFFERINGS_READ = "class-offerings:read",
-  CLASS_OFFERINGS_WRITE = "class-offerings:write",
-
   ENROLLMENTS_READ = "enrollments:read",
   ENROLLMENTS_WRITE = "enrollments:write",
   ENROLLMENTS_DELETE = "enrollments:delete",

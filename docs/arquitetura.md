@@ -32,7 +32,6 @@ src/
 │   │   ├── teachers/
 │   │   └── subjects/
 │   ├── enrollment/
-│   ├── class-offering/
 │   └── attendance/
 └── shared/
     ├── shared.module.ts
@@ -230,7 +229,6 @@ O `DrizzleService` é um singleton provido pelo `SharedModule` e injetado nos re
 | `StudentsModule` | Gestão de alunos |
 | `TeachersModule` | Gestão de professores |
 | `SubjectsModule` | Gestão de disciplinas |
-| `ClassOfferingModule` | Oferta de turmas |
 | `EnrollmentModule` | Matrículas de alunos em turmas |
 | `AttendanceModule` | Controle de presença |
 | `SharedModule` | Infraestrutura compartilhada (banco de dados) |
@@ -259,7 +257,6 @@ O `DrizzleService` é um singleton provido pelo `SharedModule` e injetado nos re
 ```json
 "@shared/*"        → "src/shared/*"
 "@academic/*"      → "src/modules/academic/*"
-"@class-offering/*"→ "src/modules/class-offering/*"
 "@enrollment/*"    → "src/modules/enrollment/*"
 "@attendance/*"    → "src/modules/attendance/*"
 ```

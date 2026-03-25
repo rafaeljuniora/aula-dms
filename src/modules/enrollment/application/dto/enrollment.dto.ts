@@ -4,7 +4,6 @@ export class EnrollmentDto {
   private constructor(
     public id: string | undefined,
     public studentId: string,
-    public classOfferingId: string,
     public status: string,
     public enrolledAt: Date,
     public canceledAt: Date | null | undefined,
@@ -15,7 +14,6 @@ export class EnrollmentDto {
     return new EnrollmentDto(
       enrollment.id,
       enrollment.studentId,
-      enrollment.classOfferingId,
       enrollment.status,
       enrollment.enrolledAt,
       enrollment.canceledAt,

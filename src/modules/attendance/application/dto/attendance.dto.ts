@@ -4,7 +4,6 @@ export class AttendanceDto {
   private constructor(
     public studentId: string,
     public lessonId: string,
-    public classOfferingId: string,
     public status: string,
   ) {}
 
@@ -13,7 +12,6 @@ export class AttendanceDto {
     return new AttendanceDto(
       attendance.studentId,
       attendance.lessonId,
-      attendance.classOfferingId,
       attendance.status,
     );
   }

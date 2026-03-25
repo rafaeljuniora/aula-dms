@@ -16,48 +16,11 @@ export class DrizzleAttendanceRepository implements AttendanceRepository {
     await this.drizzleService.db.insert(attendancesSchema).values({
       studentId: attendance.studentId,
       lessonId: attendance.lessonId,
-      classOfferingId: attendance.classOfferingId,
       status: attendance.status,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
   }
 
-  async findByStudentAndClassOffering(
-    studentId: string,
-    classOfferingId: string,
-  ): Promise<Attendance[]> {
-    const rows = await this.drizzleService.db
-      .select()
-      .from(attendancesSchema)
-      .where(
-        and(
-          eq(attendancesSchema.studentId, studentId),
-          eq(attendancesSchema.classOfferingId, classOfferingId),
-        ),
-      );
-
-    return rows.map(
-      (row) =>
-        Attendance.restore({
-          ...row,
-          status: row.status as AttendanceStatus,
-        })!,
-    );
-  }
-
-  async findByClassOffering(classOfferingId: string): Promise<Attendance[]> {
-    const rows = await this.drizzleService.db
-      .select()
-      .from(attendancesSchema)
-      .where(eq(attendancesSchema.classOfferingId, classOfferingId));
-
-    return rows.map(
-      (row) =>
-        Attendance.restore({
-          ...row,
-          status: row.status as AttendanceStatus,
-        })!,
-    );
-  }
+  // class-offering-specific repository methods removed
 }

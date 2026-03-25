@@ -2,10 +2,7 @@ import {
   attendanceStatusEnum,
   attendancesSchema,
 } from "@attendance/infra/schemas/attendance.schema";
-import {
-  classOfferingStatusEnum,
-  classOfferingsSchema,
-} from "@class-offering/infra/schemas/class-offering.schema";
+// class offering schema removed
 import {
   enrollmentStatusEnum,
   enrollmentsSchema,
@@ -15,8 +12,6 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 const schema = {
-  classOfferingsSchema,
-  classOfferingStatusEnum,
   enrollmentsSchema,
   enrollmentStatusEnum,
   attendancesSchema,
