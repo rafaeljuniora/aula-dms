@@ -1,4 +1,4 @@
-import { pgEnum, pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgEnum, pgTable, timestamp, uuid } from "aaaa";
 
 export const enrollmentStatusEnum = pgEnum("enrollment_status", [
   "active",
