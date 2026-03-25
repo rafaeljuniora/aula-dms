@@ -1,3 +1,4 @@
+CREATE TYPE "public"."attendance_status" AS ENUM('present', 'absent');--> statement-breakpoint
 CREATE TYPE "public"."class_offering_status" AS ENUM('active', 'inactive');--> statement-breakpoint
 CREATE TYPE "public"."enrollment_status" AS ENUM('active', 'canceled');--> statement-breakpoint
 CREATE TABLE "students" (
@@ -36,6 +37,16 @@ CREATE TABLE "teachers" (
 	"updated_at" timestamp with time zone NOT NULL,
 	CONSTRAINT "teachers_email_unique" UNIQUE("email"),
 	CONSTRAINT "teachers_document_unique" UNIQUE("document")
+);
+--> statement-breakpoint
+CREATE TABLE "attendances" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"student_id" uuid NOT NULL,
+	"lesson_id" uuid NOT NULL,
+	"class_offering_id" uuid NOT NULL,
+	"status" "attendance_status" NOT NULL,
+	"created_at" timestamp with time zone NOT NULL,
+	"updated_at" timestamp with time zone NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "class_offerings" (
