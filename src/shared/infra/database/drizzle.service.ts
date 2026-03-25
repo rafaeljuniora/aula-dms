@@ -1,8 +1,4 @@
 import {
-  attendanceStatusEnum,
-  attendancesSchema,
-} from "@attendance/infra/schemas/attendance.schema";
-import {
   classOfferingStatusEnum,
   classOfferingsSchema,
 } from "@class-offering/infra/schemas/class-offering.schema";
@@ -19,8 +15,6 @@ const schema = {
   classOfferingStatusEnum,
   enrollmentsSchema,
   enrollmentStatusEnum,
-  attendancesSchema,
-  attendanceStatusEnum,
 };
 
 @Injectable()

@@ -25,8 +25,7 @@
       "@shared/*": ["src/shared/*"],
       "@class-offering/*": ["src/modules/class-offering/*"],
       "@enrollment/*": ["src/modules/enrollment/*"],
-      "@attendance/*": ["src/modules/attendance/*"],
-      "@users/*": ["src/modules/users/*"],
+"@users/*": ["src/modules/users/*"],
       "@auth/*": ["src/modules/auth/*"]
     }
   }
