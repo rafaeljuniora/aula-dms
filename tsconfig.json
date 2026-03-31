@@ -23,7 +23,6 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@shared/*": ["src/shared/*"],
-      "@enrollment/*": ["src/modules/enrollment/*"],
       "@users/*": ["src/modules/users/*"],
       "@auth/*": ["src/modules/auth/*"]
     }

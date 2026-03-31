@@ -6,6 +6,10 @@ import {
   USER_REPOSITORY,
   type UserRepository,
 } from "@users/domain/repositories/user-repository.interface";
+import type {
+  PaginatedResult,
+  PaginationParams,
+} from "@shared/infra/hateoas/hateoas.types";
 import bcrypt from "bcryptjs";
 import {
   ConflictException,
@@ -84,6 +88,21 @@ export class UserService {
   async list(): Promise<UserDto[]> {
     const rows = await this.userRepository.findAll();
     return rows.map((row) => UserDto.from(row)!);
+  }
+
+  async listPaginated(
+    params: PaginationParams,
+  ): Promise<PaginatedResult<UserDto>> {
+    const rows = await this.list();
+    const start = (params.page - 1) * params.limit;
+    const end = start + params.limit;
+
+    return {
+      data: rows.slice(start, end),
+      total: rows.length,
+      page: params.page,
+      limit: params.limit,
+    };
   }
 
   async findById(id: string): Promise<UserDto | null> {

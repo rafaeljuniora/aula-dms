@@ -1,14 +1,10 @@
-import {
-  enrollmentStatusEnum,
-  enrollmentsSchema,
-} from "@enrollment/infra/schemas/enrollment.schema";
+import { usersSchema } from "@users/infra/schemas/user.schema";
 import { Injectable, type OnModuleDestroy } from "@nestjs/common";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 const schema = {
-  enrollmentsSchema,
-  enrollmentStatusEnum,
+  usersSchema,
 };
 
 @Injectable()
