@@ -7,6 +7,8 @@ import { AppModule } from "./app.module";
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.setGlobalPrefix("v1");
+
   const reflector = app.get(Reflector);
   app.useGlobalInterceptors(new HateoasInterceptor(reflector));
 
