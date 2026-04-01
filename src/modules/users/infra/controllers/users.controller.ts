@@ -10,6 +10,8 @@ import {
   DefaultValuePipe,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Post,
@@ -19,6 +21,7 @@ import {
 import {
   ApiBearerAuth,
   ApiCreatedResponse,
+  ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
@@ -45,13 +48,13 @@ export class UsersController {
     }),
   })
   @ApiOperation({ summary: "Listar usuarios" })
-  @ApiQuery({ name: "page", required: false, type: Number })
-  @ApiQuery({ name: "limit", required: false, type: Number })
+  @ApiQuery({ name: "_page", required: false, type: Number })
+  @ApiQuery({ name: "_size", required: false, type: Number })
   @ApiOkResponse({ description: "Lista de usuarios" })
   @ApiUnauthorizedResponse({ description: "Nao autorizado" })
   async findAll(
-    @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number,
-    @Query("limit", new DefaultValuePipe(10), ParseIntPipe) limit: number,
+    @Query("_page", new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query("_size", new DefaultValuePipe(10), ParseIntPipe) limit: number,
   ) {
     return this.userService.listPaginated({ page, limit });
   }
@@ -84,17 +87,19 @@ export class UsersController {
   }
 
   @Put(":id")
+  @HttpCode(HttpStatus.NO_CONTENT)
   @RequirePermissions(Permission.USERS_WRITE)
   @ApiOperation({ summary: "Atualizar usuario" })
-  @ApiOkResponse({ description: "Usuario atualizado" })
+  @ApiNoContentResponse({ description: "Usuario atualizado" })
   async update(@Param("id") id: string, @Body() body: UpdateUserDto) {
     return this.userService.edit(id, body);
   }
 
   @Delete(":id")
+  @HttpCode(HttpStatus.NO_CONTENT)
   @RequirePermissions(Permission.USERS_DELETE)
   @ApiOperation({ summary: "Remover usuario" })
-  @ApiOkResponse({ description: "Usuario removido" })
+  @ApiNoContentResponse({ description: "Usuario removido" })
   async remove(@Param("id") id: string) {
     return this.userService.remove(id);
   }
