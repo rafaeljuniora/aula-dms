@@ -7,9 +7,10 @@ import {
 } from "class-validator";
 
 export class UpdateUserDto {
-  @ApiProperty({ example: "novo.usuario@escola.edu.br" })
+  @ApiProperty({ example: "novo.usuario@escola.edu.br", required: false })
   @IsEmail()
-  email: string;
+  @IsOptional()
+  email?: string;
 
   @ApiProperty({ required: false, example: "novaSenha123" })
   @IsOptional()
@@ -21,7 +22,8 @@ export class UpdateUserDto {
   @IsString()
   teacherId?: string;
 
-  @ApiProperty({ isArray: true, type: String })
+  @ApiProperty({ isArray: true, type: String, required: false })
   @IsArray()
-  permissions: string[];
+  @IsOptional()
+  permissions?: string[];
 }
