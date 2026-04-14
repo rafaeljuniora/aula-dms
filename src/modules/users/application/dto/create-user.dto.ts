@@ -5,12 +5,12 @@ export class CreateUserDto {
   @ApiProperty({ example: "novo.usuario@escola.edu.br" })
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email!: string;
 
   @ApiProperty({ example: "senha123" })
   @IsString()
   @IsNotEmpty()
-  password: string;
+  password!: string;
 
   @ApiProperty({ required: false, nullable: true })
   @IsOptional()
@@ -20,5 +20,5 @@ export class CreateUserDto {
   @ApiProperty({ isArray: true, type: String })
   @IsArray()
   @IsNotEmpty()
-  permissions: string[];
+  permissions!: string[];
 }

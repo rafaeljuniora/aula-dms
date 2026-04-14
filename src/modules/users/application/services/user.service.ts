@@ -57,7 +57,7 @@ export class UserService {
       throw new NotFoundException("User not found");
     }
 
-    const normalizedEmail = dto.email.toLowerCase();
+    const normalizedEmail = dto.email?.toLowerCase() ?? user.email;
 
     if (normalizedEmail !== user.email) {
       const existing = await this.userRepository.findByEmail(normalizedEmail);
@@ -72,11 +72,14 @@ export class UserService {
       password = await bcrypt.hash(dto.password, 10);
     }
 
+    const permissions = dto.permissions ?? user.permissions;
+    const teacherId = dto.teacherId ?? user.teacherId;
+
     user
       .withEmail(normalizedEmail)
       .withPassword(password)
-      .withTeacherId(dto.teacherId)
-      .withPermissions(dto.permissions);
+      .withTeacherId(teacherId)
+      .withPermissions(permissions);
 
     await this.userRepository.update(user);
   }

@@ -1,9 +1,9 @@
 export class User {
   private readonly _id?: string;
-  private _email: string;
-  private _password: string;
+  private _email!: string;
+  private _password!: string;
   private _teacherId?: string;
-  private _permissions: string[];
+  private _permissions!: string[];
   private readonly _createdAt?: Date;
   private readonly _updatedAt?: Date;
 

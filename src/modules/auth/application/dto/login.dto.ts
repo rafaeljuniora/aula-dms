@@ -5,10 +5,10 @@ export class LoginDto {
   @ApiProperty({ example: "admin@escola.edu.br" })
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email!: string;
 
   @ApiProperty({ example: "admin123" })
   @IsString()
   @IsNotEmpty()
-  password: string;
+  password!: string;
 }
