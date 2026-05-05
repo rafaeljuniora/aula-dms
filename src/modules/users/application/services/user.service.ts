@@ -6,6 +6,12 @@ import {
   USER_REPOSITORY,
   type UserRepository,
 } from "@users/domain/repositories/user-repository.interface";
+import type { PublishMessageDto } from "@messaging/application/dto/publish-message.dto";
+import { MessagingService } from "@messaging/application/services/messaging.service";
+import {
+  AUTH_EXCHANGES,
+  AUTH_ROUTING_KEYS,
+} from "@messaging/application/constants/auth-events.constants";
 import type {
   PaginatedResult,
   PaginationParams,
@@ -29,7 +35,20 @@ export class UserService {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly userRepository: UserRepository,
+    private readonly messagingService: MessagingService,
   ) {}
+
+  private async publishAuthEvent(
+    exchangeName: string,
+    routingKey: string,
+    payload: Record<string, unknown>,
+  ): Promise<void> {
+    const message: PublishMessageDto = {
+      content: JSON.stringify(payload),
+    };
+
+    await this.messagingService.publish(message, exchangeName, routingKey);
+  }
 
   async create(dto: CreateUserDto): Promise<void> {
     const existing = await this.userRepository.findByEmail(dto.email);
@@ -48,6 +67,20 @@ export class UserService {
     });
 
     await this.userRepository.create(user!);
+
+    const created = await this.userRepository.findByEmail(user!.email);
+    if (created) {
+      await this.publishAuthEvent(
+        AUTH_EXCHANGES.created,
+        AUTH_ROUTING_KEYS.created,
+        {
+          id: created.id,
+          email: created.email,
+          teacherId: created.teacherId,
+          permissions: created.permissions,
+        },
+      );
+    }
   }
 
   async edit(id: string, dto: UpdateUserDto): Promise<void> {
@@ -82,10 +115,35 @@ export class UserService {
       .withPermissions(permissions);
 
     await this.userRepository.update(user);
+
+    await this.publishAuthEvent(
+      AUTH_EXCHANGES.updated,
+      AUTH_ROUTING_KEYS.updated,
+      {
+        id: user.id,
+        email: user.email,
+        teacherId: user.teacherId,
+        permissions: user.permissions,
+      },
+    );
   }
 
   async remove(id: string): Promise<void> {
+    const existing = await this.userRepository.findById(id);
     await this.userRepository.delete(id);
+
+    if (existing) {
+      await this.publishAuthEvent(
+        AUTH_EXCHANGES.deleted,
+        AUTH_ROUTING_KEYS.deleted,
+        {
+          id: existing.id,
+          email: existing.email,
+          teacherId: existing.teacherId,
+          permissions: existing.permissions,
+        },
+      );
+    }
   }
 
   async list(): Promise<UserDto[]> {
