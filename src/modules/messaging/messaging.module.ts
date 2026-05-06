@@ -1,0 +1,13 @@
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { MessagingService } from "./application/services/messaging.service";
+import { MessagingController } from "./infra/controllers/messaging.controller";
+import { RabbitMQService } from "./infra/rabbitmq/rabbitmq.service";
+
+@Module({
+  imports: [ConfigModule],
+  controllers: [MessagingController],
+  providers: [RabbitMQService, MessagingService],
+  exports: [MessagingService],
+})
+export class MessagingModule {}
